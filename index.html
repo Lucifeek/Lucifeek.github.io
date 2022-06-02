@@ -73,8 +73,8 @@
   
     <article id="post-Enum" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/06/02/Enum/" class="article-date">
-  <time class="dt-published" datetime="2022-06-02T04:14:38.000Z" itemprop="datePublished">2022-06-02</time>
+    <a href="/2022/06/01/Enum/" class="article-date">
+  <time class="dt-published" datetime="2022-06-01T04:14:38.000Z" itemprop="datePublished">2022-06-01</time>
 </a>
     
   <div class="article-category">
@@ -89,7 +89,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/02/Enum/">Enum</a>
+      <a class="p-name article-title" href="/2022/06/01/Enum/">Enum</a>
     </h1>
   
 
@@ -108,21 +108,23 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">DayOfWeek</span> &#123;</span><br><span class="line">    SUNDAY(<span class="string">&quot;Sunday&quot;</span>, <span class="string">&quot;weekend&quot;</span>),</span><br><span class="line">    MONDAY(<span class="string">&quot;Monday&quot;</span>, <span class="string">&quot;weekday&quot;</span>),</span><br><span class="line">    TUESDAY(<span class="string">&quot;Tuesday&quot;</span>, <span class="string">&quot;weekday&quot;</span>),</span><br><span class="line">    WEDNESDAY(<span class="string">&quot;Wednesday&quot;</span>, <span class="string">&quot;weekday&quot;</span>),</span><br><span class="line">    THURSDAY(<span class="string">&quot;Thursday&quot;</span>, <span class="string">&quot;weekday&quot;</span>),</span><br><span class="line">    FRIDAY(<span class="string">&quot;Friday&quot;</span>, <span class="string">&quot;weekday&quot;</span>),</span><br><span class="line">    SATURDAY(<span class="string">&quot;Saturday&quot;</span>, <span class="string">&quot;weekend&quot;</span>)</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    DayOfWeek(String desc, String type) &#123;</span><br><span class="line">        <span class="built_in">this</span>.desc = desc;</span><br><span class="line">        <span class="built_in">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String desc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="枚举类的使用"><a href="#枚举类的使用" class="headerlink" title="枚举类的使用"></a>枚举类的使用</h3><ul>
-<li>Java中可以通过<code>valueOf()</code>来将一个字符串转换为对应名字的枚举值</li>
+<li>Java中可以通过<code>valueOf()</code>来将一个字符串转换为对应名字的枚举值<ul>
+<li>Usage: <code>DayOfWeek.valueOf(&quot;MONDAY&quot;);</code></li>
+</ul>
+</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enum 类中 valueof 方法的实现</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Enum</span>&lt;T&gt;&gt; T <span class="title function_">valueOf</span><span class="params">(Class&lt;T&gt; enumType, String name)</span> &#123;</span><br><span class="line">        <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> enumType.enumConstantDirectory().get(name);</span><br><span class="line">        <span class="keyword">if</span> (result != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        <span class="keyword">if</span> (name == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>(<span class="string">&quot;Name is null&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;No enum constant &quot;</span> + enumType.getCanonicalName() + <span class="string">&quot;.&quot;</span> + name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>Usage: <code>DayOfWeek.valueOf(&quot;MONDAY&quot;);</code></p>
-</blockquote>
+
+
 <ul>
-<li>通过<code>values()</code>对全部声明的枚举进行遍历，方法返回一个声明全部枚举值的数组</li>
+<li><p>通过<code>values()</code>对全部声明的枚举进行遍历，方法返回一个声明全部枚举值的数组</p>
+<ul>
+<li>Usage: <code>DayOfWeek.values();</code></li>
 </ul>
-<blockquote>
-<p>Usage: <code>DayOfWeek.values();</code></p>
-</blockquote>
-<ul>
-<li>通过实现对应接口&#x2F;抽象方法，定义不同枚举在同一方法下的不同行为</li>
+</li>
+<li><p>通过实现对应接口&#x2F;抽象方法，定义不同枚举在同一方法下的不同行为</p>
+</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Action</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">action</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -131,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lucifeek.github.io/2022/06/02/Enum/" data-id="cl3wvt72n0000nowu97be6hxb" data-title="Enum" class="article-share-link">Share</a>
+      <a data-url="https://lucifeek.github.io/2022/06/01/Enum/" data-id="cl3ww6oef0000wwwu2q4k9adm" data-title="Enum" class="article-share-link">Share</a>
       
       
       
@@ -184,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lucifeek.github.io/2022/05/30/hello-world/" data-id="cl3wvt72s0001nowu59vb0a2v" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://lucifeek.github.io/2022/05/30/hello-world/" data-id="cl3ww6oep0005wwwu1hin0med" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -248,7 +250,7 @@
       <ul>
         
           <li>
-            <a href="/2022/06/02/Enum/">Enum</a>
+            <a href="/2022/06/01/Enum/">Enum</a>
           </li>
         
           <li>
